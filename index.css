@@ -1,252 +1,322 @@
-@import bourbon
-@import neat
+  html {
+    box-sizing: border-box;
+  }
   
-#4aa3df: #4aa3df
-#34495e: #34495e
-#2980b9: #2980b9
-#2c3e50: #2c3e50
-#ecf0f1: #ecf0f1
-#bdc3c7: #bdc3c7
-#e74c3c: #e74c3c
-#2ecc71: #2ecc71
-
-html,
-body
-  +size(100vw 100vh)
-  max-width: 100%
-  color: #ecf0f1
-  font-family: "Source Sans Pro"
-  background: #eee
-
-#calendar
-  min-width: em(260)
-  box-shadow: 0px 0px 8px 0px rgba(#2c3e50, 0.4)
-  background: #fff
-
-// ==================
-// HEADER
-// ==================
-
-.header
-  +size(100% 6em)
-  +display(table)
-  background: #4aa3df
-
-.header__main-date,
-.header__arrow,
-  +display(table-cell)
-  text-align: center
-  vertical-align: middle
-
-.header__arrow
-  +size(15% auto)
+  *, *::after, *::before {
+    box-sizing: inherit;
+  }
   
-.main-date__container
-  +size(70% auto)
-  +margin(0 auto)
-  +clearfix
-
-.main-date__container__day
-  font-size: modular-scale(4)
-  display: inline-block
-
-.day__month__wrapper
-  display: inline-block
-
-.main-date__container__month,
-.main-date__container__year
-  font-size: 1.2em
-  text-transform: uppercase
-  display: block
-
-.arrow__arrow
-  +clearfix
-  +position(absolute, 50% null null 50%)
-  +transform(translate3d(-50%, -50%, 0))
+  html,
+  body {
+    height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+    color: #ecf0f1;
+    font-family: "Source Sans Pro";
+    background: #eee;
+  }
   
-.arrow--left
-  text-align: right
+  #calendar {
+    min-width: 16.25em;
+    box-shadow: 0px 0px 8px 0px rgba(44, 62, 80, 0.4);
+    background: #fff;
+  }
   
-.arrow--right
-  text-align: left
+  .header {
+    height: 6em;
+    width: 100%;
+    display: table;
+    background: #4aa3df;
+  }
   
-.arrow__circle
-  +display(inline-block)
-  +position(relative)
-  +size(2em 2em)
-  +background(#ecf0f1)
-  cursor: pointer
-  border-radius: 50%
+  .header__main-date,
+  .header__arrow {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
   
-.arrow__pipe
-  +size(em(8) em(6))
-  +margin(em(5) 0 0 0)
-  background: #2980b9
+  .header__arrow {
+    height: auto;
+    width: 15%;
+  }
   
-.arrow--left
-  .arrow__pipe
-    float: right
-  .arrow__triangle
-    float: right
-    +triangle(em(16), #2980b9, left)
-      
-.arrow--right
-  .arrow__pipe
-    float: left
-  .arrow__triangle
-    float: left
-    +triangle(em(16), #2980b9, right)
-
-      
-// ==================
-//  DAY NAMES ROW
-// ==================
-
-.days
-  +size(100% 2.5em)
-  +display(table)
-  text-align: center
-  background: #2ecc71
-
-.days__day
-  +size(14.28571% auto)
-  display: table-cell
-  vertical-align: middle
-  text-transform: capitalize
+  .main-date__container {
+    height: auto;
+    width: 70%;
+    margin: 0 auto;
+  }
+  .main-date__container::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
   
-      
-// ===================
-// DAYS GRID
-// ===================
-
-.daysgrid
-  color: #2c3e50
-
-.daysgrid__week
-  +clearfix
-
-.daysgrid__day
-  +display(table)
-  +size(14.28571% 3em)
-  +position(relative)
-  float: left
-  cursor: pointer
-  text-align: center
-
-.day__number
-  +display(table-cell)
-  vertical-align: middle
-
-.day__status
-  +position(absolute, 10% 0 0 10%)
-  +size(em(10) em(10))
-  border-radius: 50%
-  background: none
+  .main-date__container__day {
+    font-size: 3.1573345183em;
+    display: inline-block;
+  }
   
-.daysgrid__day--today
-  &:after
-    content: ""
-    +position(absolute, 50% null null 50%)
-    +transform(translate3d(-50%, -50%, 0))
-    +size(2em 2em)
-    border-radius: 50%
-    z-index: -1
-    background: rgba(#bdc3c7, 0.3)
+  .day__month__wrapper {
+    display: inline-block;
+  }
   
-.daysgrid__tasks
-  +clearfix
-  position: relative
-  width: 100%
-  min-height: 6em
-  background: #ecf0f1
-  box-shadow: inset 0px 0px 1px 0px rgba(#2c3e50, 0.1)
+  .main-date__container__month,
+  .main-date__container__year {
+    font-size: 1.2em;
+    text-transform: uppercase;
+    display: block;
+  }
   
-  input[type="text"]
-    +size(70% null)
-    +margin(0.5em 15%)
-    +display(block)
-    +position(relative, null null 1em null)
-    +padding(0.5em)
-    font-size: modular-scale(0)
-    border: 0
-    outline: 0
-    background: none
-    border-bottom: 2px solid #bdc3c7
-    
-  ul
-    list-tyle: none
-    width: 80%
-    margin: 0 auto
-    padding: 1em 0
-    
-    li
-      +clearfix
-      position: relative
-      display: block
-      
-      font-size: modular-scale(0)
-      padding: 0.1em
-      color: #34495e
-      
-      label
-        width: 80%
-        display: inline-block
-        float: left
-      
-      input[type="checkbox"]
-        position: relative
-        display: inline-block
-        float: left
-
-.btn
-  position: relative
-  padding: 0.7em
-  font-size: modular-scale(-1)
-  background: none
-  border: 0
-  cursor: pointer
-  opacity: 0.6
-  float: right
-
-  &:hover
-    opacity: 1
-    
-.cross
-  position: relative
-  display: block
+  .arrow__arrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+  }
+  .arrow__arrow::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
   
-  &:after, &:before
-    content: ""
-    position: absolute
-    +size(15px 1px)
-    left: -8px
-    background: #2c3e50
-    
-  &:after
-    +transform(rotate(45deg))
+  .arrow--left {
+    text-align: right;
+  }
   
-  &:before
-    +transform(rotate(-45deg))
+  .arrow--right {
+    text-align: left;
+  }
   
-.day__status--taskopen
-  &:after
-    content: ""
-    +display(block)
-    +position(absolute, null null 0 50%)
-    +transform(translateX(-50%))
-    +triangle(em(12px), #ecf0f1, up)
-
-.day__status--done
-  background: #2ecc71
-.day__status--undone
-  background: #e74c3c
-
-// =============
-// TASKS
-// =============
-
-#calendar
-  +media(min-width em(480), 12)
-    +position(absolute, 50% null null 50%)
-    +transform(perspective(1px) translateZ(0) translate(-50%, -50%))
-    width: em(480)
+  .arrow__circle {
+    display: inline-block;
+    position: relative;
+    height: 2em;
+    width: 2em;
+    background: #ecf0f1;
+    background: #ecf0f1;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  .arrow__pipe {
+    height: 0.375em;
+    width: 0.5em;
+    margin: 0.3125em 0 0;
+    background: #2980b9;
+  }
+  
+  .arrow--left .arrow__pipe {
+    float: right;
+  }
+  .arrow--left .arrow__triangle {
+    float: right;
+    height: 0;
+    width: 0;
+    border-bottom: 0.5em solid transparent;
+    border-right: 0.5em solid #2980b9;
+    border-top: 0.5em solid transparent;
+  }
+  
+  .arrow--right .arrow__pipe {
+    float: left;
+  }
+  .arrow--right .arrow__triangle {
+    float: left;
+    height: 0;
+    width: 0;
+    border-bottom: 0.5em solid transparent;
+    border-left: 0.5em solid #2980b9;
+    border-top: 0.5em solid transparent;
+  }
+  
+  .days {
+    height: 2.5em;
+    width: 100%;
+    display: table;
+    text-align: center;
+    background: #2ecc71;
+  }
+  
+  .days__day {
+    height: auto;
+    width: 14.28571%;
+    display: table-cell;
+    vertical-align: middle;
+    text-transform: capitalize;
+  }
+  
+  .daysgrid {
+    color: #2c3e50;
+  }
+  
+  .daysgrid__week::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+  
+  .daysgrid__day {
+    display: table;
+    height: 3em;
+    width: 14.28571%;
+    position: relative;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .day__number {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  
+  .day__status {
+    position: absolute;
+    top: 10%;
+    right: 0;
+    bottom: 0;
+    left: 10%;
+    height: 0.625em;
+    width: 0.625em;
+    border-radius: 50%;
+    background: none;
+  }
+  
+  .daysgrid__day--today:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+    height: 2em;
+    width: 2em;
+    border-radius: 50%;
+    z-index: -1;
+    background: rgba(189, 195, 199, 0.3);
+  }
+  
+  .daysgrid__tasks {
+    position: relative;
+    width: 100%;
+    min-height: 6em;
+    background: #ecf0f1;
+    box-shadow: inset 0px 0px 1px 0px rgba(44, 62, 80, 0.1);
+  }
+  .daysgrid__tasks::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+  .daysgrid__tasks input[type="text"] {
+    width: 70%;
+    margin: 0.5em 15%;
+    display: block;
+    position: relative;
+    bottom: 1em;
+    padding: 0.5em;
+    font-size: 1em;
+    border: 0;
+    outline: 0;
+    background: none;
+    border-bottom: 2px solid #bdc3c7;
+  }
+  .daysgrid__tasks ul {
+    list-tyle: none;
+    width: 80%;
+    margin: 0 auto;
+    padding: 1em 0;
+  }
+  .daysgrid__tasks ul li {
+    position: relative;
+    display: block;
+    font-size: 1em;
+    padding: 0.1em;
+    color: #34495e;
+  }
+  .daysgrid__tasks ul li::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+  .daysgrid__tasks ul li label {
+    width: 80%;
+    display: inline-block;
+    float: left;
+  }
+  .daysgrid__tasks ul li input[type="checkbox"] {
+    position: relative;
+    display: inline-block;
+    float: left;
+  }
+  
+  .btn {
+    position: relative;
+    padding: 0.7em;
+    font-size: 0.7501875469em;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    opacity: 0.6;
+    float: right;
+  }
+  .btn:hover {
+    opacity: 1;
+  }
+  
+  .cross {
+    position: relative;
+    display: block;
+  }
+  .cross:after, .cross:before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 15px;
+    left: -8px;
+    background: #2c3e50;
+  }
+  .cross:after {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .cross:before {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  
+  .day__status--taskopen:after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    height: 0;
+    width: 0;
+    border-bottom: 0.375em solid #ecf0f1;
+    border-left: 0.375em solid transparent;
+    border-right: 0.375em solid transparent;
+  }
+  
+  .day__status--done {
+    background: #2ecc71;
+  }
+  
+  .day__status--undone {
+    background: #e74c3c;
+  }
+  
+  @media screen and (min-width: 30em) {
+    #calendar {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: perspective(1px) translateZ(0) translate(-50%, -50%);
+      transform: perspective(1px) translateZ(0) translate(-50%, -50%);
+      width: 30em;
+    }
+  }
