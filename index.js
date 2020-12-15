@@ -7,7 +7,7 @@ var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/
 // Authorization scopes required by the API; multiple scopes can be
 // included, separated by spaces.
 var SCOPES = "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/userinfo.profile";
-
+ 
 // Util functions that creates unique id for elements.
 function createId() {
   return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 8);
@@ -90,46 +90,6 @@ function appendPre(message) {
   var pre = document.getElementById('content');
   var textContent = document.createTextNode(message + '\n');
   pre.appendChild(textContent);
-}
-
-/**
- * Print the summary and start datetime/date of the next ten events in
- * the authorized user's calendar. If no events are found an
- * appropriate message is printed.
- */
-function listUpcomingEvents() {
-  gapi.client.calendar.events.list({
-    'calendarId': 'primary',
-    'timeMin': (new Date()).toISOString(),
-    'showDeleted': false,
-    'singleEvents': true,
-    'maxResults': 10,
-    'orderBy': 'startTime'
-  }).then(function (response) {
-    var events = response.result.items;
-    // appendPre('Upcoming events:');
-    tasks = {}
-    if (events.length > 0) {
-      for (i = 0; i < events.length; i++) {
-        var event = events[i];
-        var when = event.start.dateTime;
-        if (!when) {
-          when = event.start.date;
-        }
-        date = when.substring(0, 10)
-        if (!tasks[date]) {
-          tasks[date] = []
-        }
-        task = { "id": createId(), "label": event.summary, "done": false, "title": event.summary }
-        tasks[date].push(task)
-      }
-      for (var date in tasks) {
-        updateStorage(date, tasks[date])
-      }
-    } else {
-      // appendPre('No upcoming events found.');
-    }
-  });
 }
 
 /**
@@ -281,6 +241,7 @@ function getLiData(ul) {
 }
 
 function updateDay(date, lis) {
+  console.log('update' + date + ', ' + lis.length)
   var day = document.querySelector('div[data-date="' + date + '"]');
   var status = day.querySelector('.day__status');
   var undone = lis.filter(function (li) { return li.done === false; });
@@ -303,7 +264,6 @@ function loadMonth(event) {
   var newDate = this.dataset.next;
   var daysGrid = document.getElementById('daysgrid');
   setHeader(newDate);
-  createCalendar(newDate, daysGrid);
 }
 
 function bindInput(taskList) {
