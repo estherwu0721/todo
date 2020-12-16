@@ -12,7 +12,7 @@
     width: 100vw;
     max-width: 100%;
     color: #ecf0f1;
-    font-family: "Source Sans Pro";
+    font-family: "Monaco", monospace;;
     background: #eee;
   }
   
@@ -22,6 +22,32 @@
     background: #fff;
   }
   
+  #authorize_button {
+    position: absolute;
+    top: 83%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+  }
+
+  #signout_button {
+    position: absolute;
+    top: 83%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+  }
+
+  #button_annotation {
+    position: absolute;
+    top: 78%;
+    left: 50%;
+    font-size: 0.8em;
+    color:#2c3e50;
+    -webkit-transform: perspective(1px) translateZ(0) translate(-50%, -50%);
+    transform: perspective(1px) translateZ(0) translate(-50%, -50%);
+  }
+
   .header {
     height: 6em;
     width: 100%;
@@ -320,3 +346,4 @@
       width: 30em;
     }
   }
+

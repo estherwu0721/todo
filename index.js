@@ -39,7 +39,6 @@ function initClient() {
     // Handle the initial sign-in state.
     updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
 
-
     var authorizeButton = document.getElementById('authorize_button');
     var signoutButton = document.getElementById('signout_button');
     authorizeButton.onclick = handleAuthClick;
@@ -54,6 +53,7 @@ function initClient() {
  *  appropriately. After a sign-in, the API is called.
  */
 function updateSigninStatus(isSignedIn) {
+  console.log(isSignedIn);
   var authorizeButton = document.getElementById('authorize_button');
   var signoutButton = document.getElementById('signout_button');
   if (isSignedIn) {
@@ -78,6 +78,8 @@ function handleAuthClick(event) {
  */
 function handleSignoutClick(event) {
   gapi.auth2.getAuthInstance().signOut();
+  location.reload();
+  //updateSigninStatus(false);
 }
 
 /**
