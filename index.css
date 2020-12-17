@@ -11,6 +11,7 @@
     height: 100vh;
     width: 100vw;
     max-width: 100%;
+    display: grid;
     color: #ecf0f1;
     font-family: "Monaco", monospace;;
     background: #eee;
@@ -21,26 +22,28 @@
     box-shadow: 0px 0px 8px 0px rgba(44, 62, 80, 0.4);
     background: #fff;
   }
-  
+
   #authorize_button {
-    position: absolute;
-    top: 83%;
+    width: 80px;
+    height: 20px;
+    position: relative;
     left: 50%;
     -webkit-transform: translate3d(-50%, -50%, 0);
     transform: translate3d(-50%, -50%, 0);
   }
 
   #signout_button {
-    position: absolute;
-    top: 83%;
+    position: relative;
+    width: 80px;
+    height: 20px;
     left: 50%;
     -webkit-transform: translate3d(-50%, -50%, 0);
     transform: translate3d(-50%, -50%, 0);
   }
 
   #button_annotation {
-    position: absolute;
-    top: 78%;
+    position: relative;
+    width: 23em;
     left: 50%;
     font-size: 0.8em;
     color:#2c3e50;

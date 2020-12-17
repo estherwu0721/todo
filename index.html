@@ -68,45 +68,42 @@
 </head>
 
 <body>
-  <p id="button_annotation">Authorize Google Calender imports:</p>
-  <button id="authorize_button" style="display: none;">Authorize</button>
-  <button id="signout_button" style="display: none;">Sign Out</button>
-  <main id="calendar">
-    <header id="header" class="header">
-      <div class="header__arrow arrow--left">
-        <div class="arrow__circle">
-          <div class="arrow__arrow">
-            <div class="arrow__pipe"></div>
-            <div class="arrow__triangle"></div>
+    <main id="calendar">
+      <header id="header" class="header">
+        <div class="header__arrow arrow--left">
+          <div class="arrow__circle">
+            <div class="arrow__arrow">
+              <div class="arrow__pipe"></div>
+              <div class="arrow__triangle"></div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="header__main-date">
-        <div class="main-date__container"><span class="main-date__container__day"></span>
-          <div class="day__month__wrapper"><span class="main-date__container__month"></span><span
-              class="main-date__container__year"></span></div>
-        </div>
-      </div>
-      <div class="header__arrow arrow--right">
-        <div class="arrow__circle">
-          <div class="arrow__arrow">
-            <div class="arrow__pipe"></div>
-            <div class="arrow__triangle"></div>
+        <div class="header__main-date">
+          <div class="main-date__container"><span class="main-date__container__day"></span>
+            <div class="day__month__wrapper"><span class="main-date__container__month"></span><span
+                class="main-date__container__year"></span></div>
           </div>
         </div>
-      </div>
-    </header>
-    <section id="days" class="days"></section>
-    <section id="daysgrid" class="daysgrid"></section>
-  </main>
-
+        <div class="header__arrow arrow--right">
+          <div class="arrow__circle">
+            <div class="arrow__arrow">
+              <div class="arrow__pipe"></div>
+              <div class="arrow__triangle"></div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <section id="days" class="days"></section>
+      <section id="daysgrid" class="daysgrid"></section>
+    </main>
   <script type="text/x-handlebars-template" id="days_template">
   {{#each days}}
-  <div class="days__day"><span>{{this}}</span></div>
+    <div class="days__day"><span>{{this}}</span></div>
   {{/each}}
-</script>
+  </script>
 
   <script type="text/x-handlebars-template" id="cal">
+    <div>
   {{#each days}}
     {{#unless this.first}}
       {{#if this.newWeek}}
@@ -131,7 +128,12 @@
           <div class="day__number">{{this.number}}</div>
       </div>
   {{/each}}
-</script>
+    </div>
+    <p id="button_annotation">Authorize Google Calender imports:</p>
+    <button id="authorize_button" style="display: none;">Authorize</button>
+    <button id="signout_button" style="display: none;">Sign Out</button>
+
+  </script>
 
   <script type="text/x-handlebars-template" id="tasks">
   <div class="daysgrid__tasks" data-tasksfor="{{this.date}}">
