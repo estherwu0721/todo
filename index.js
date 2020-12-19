@@ -127,6 +127,7 @@ function getTasks(date) {
 }
 
 function createCalendar(date, container) {
+  console.log("cal created.")
   var date = moment(date);
   var now_date = moment();
 
@@ -262,12 +263,6 @@ function updateDay(date, lis) {
   }
 }
 
-function loadMonth(event) {
-  var newDate = this.dataset.next;
-  var daysGrid = document.getElementById('daysgrid');
-  setHeader(newDate);
-}
-
 function bindInput(taskList) {
   var input = taskList.querySelector('#task_input');
   input.addEventListener('keyup', inputKeyUp, false);
@@ -301,26 +296,7 @@ function inputKeyUp(event) {
 }
 
 function createDays(container, days) {
+  console.log("create days")
   var daysTemplate = Handlebars.compile(document.getElementById('days_template').innerHTML);
   container.innerHTML = daysTemplate({ days: days });
 }
-
-function main() {
-  var data = new Date();
-  var daysGrid = document.getElementById('daysgrid');
-  var prev = document.querySelector('.arrow--left');
-  var next = document.querySelector('.arrow--right');
-
-  moment.locale(window.navigator.language || 'en');
-  var days = moment.weekdaysShort();
-  var first_day = days[0];
-  days = days.slice(1).concat(first_day);
-
-  daysGrid.addEventListener('click', daysGridClick, false);
-  prev.addEventListener('click', loadMonth, false);
-  next.addEventListener('click', loadMonth, false);
-
-  setHeader(data);
-  createDays(document.getElementById('days'), days);
-  createCalendar(data, daysGrid);
-};

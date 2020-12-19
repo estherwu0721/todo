@@ -49,6 +49,34 @@
       });
     }
 
+    function loadMonth(event) {
+      var newDate = this.dataset.next;
+      var daysGrid = document.getElementById('daysgrid');
+      console.log('month updated')
+      setHeader(newDate);
+      createCalendar(newDate, daysGrid);
+    }
+    function main() {
+      console.log("test.")
+      var data = new Date();
+      var daysGrid = document.getElementById('daysgrid');
+      var prev = document.querySelector('.arrow--left');
+      var next = document.querySelector('.arrow--right');
+    
+      moment.locale(window.navigator.language || 'en');
+      var days = moment.weekdaysShort();
+      var first_day = days[0];
+      days = days.slice(1).concat(first_day);
+    
+      daysGrid.addEventListener('click', daysGridClick, false);
+      prev.addEventListener('click', loadMonth, false);
+      next.addEventListener('click', loadMonth, false);
+      console.log("func bonded")
+      setHeader(data);
+      createDays(document.getElementById('days'), days);
+      createCalendar(data, daysGrid);
+    };
+
     // /**
     //  *  On load, called to load the auth2 library and API client library.
     //  */
@@ -57,12 +85,13 @@
     // }
     (function () {
       handleClientLoad() // Load google calendar events from google api.
-      window.addEventListener('load', documentReady, false);
+      window.addEventListener('DOMContentLoaded', documentReady, false);
 
       function documentReady(event) {
-        window.removeEventListener('load', documentReady, false);
+        window.removeEventListener('DOMContentLoaded', documentReady, false);
         main();
       }
+      console.log("loaded")
     }());
   </script>
 </head>
